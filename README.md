@@ -1,73 +1,77 @@
-# Journol v1.0.4
+# Journol
 
-The smart logging library you've always wanted
+Journol is the smart logging library you've always wanted. It allows you to log your messages with a high level of accuracy and ease, while also providing advanced searching capabilities and log visualization. With Journol, you can ensure that your logs are well-organized, easily accessible and presented in a manner that is both clear and comprehensive.
 
-## Introduction
+# Features
 
-Journol is a logging library that allows you to log events and messages in a smart and efficient way. With Journol, you can keep track of all your logs in one place and easily filter and search through them. In future releases, we plan to add MongoDB integration to make logging even more efficient and organized.
+- Logging messages with different levels of severity (error, warn, info, verbose, debug, silly)
+- Integration with Sentry for error reporting and tracking
+- Advanced log searching with support for full-text search, case sensitivity, and regex patterns
+- Log visualization using Chart.js for easy analysis and understanding of log data
+- Ability to search logs by timestamp and level of severity
 
-## Getting Started
-
-To get started with Journol, simply run the following command in your terminal to install the package:
+# Installation
 
 ```
 npm install journol
 ```
 
-Once you have installed Journol, you can start logging your events and messages by importing Journol into your project and creating a log object.
+# Usage
+## Logging a message
+
+To log a message with Journol, you can use the logMessage function, which accepts three arguments: message, level, and dsn. message is the text that you want to log, level is the severity level of the message (error, warn, info, verbose, debug, silly), and dsn is the Sentry DSN key (optional).
 
 ```
-const Journol = require('journol');
-const log = new Journol();
+const journol = require('journol');
+
+journol.logMessage('This is a test log message', 'info');
 ```
 
-## Configuration
+## Searching logs
 
-Journol requires a Sentry DSN to be provided in order to log your events and messages. You can find your Sentry DSN in the Sentry dashboard. Simply replace your-sentry-dsn in the following code with your Sentry DSN to configure Journol.
+Journol provides advanced searching capabilities that allow you to search your logs using full-text search, case sensitivity, and regex patterns. You can search logs using the searchLogs function, which accepts a single argument, searchTerm.
 
 ```
-log.init({
-  dsn: 'your-sentry-dsn',
+const journol = require('journol');
+
+const logs = journol.searchLogs('test');
+console.log(logs);
+```
+
+## Log visualization
+
+Journol also provides log visualization through the use of Chart.js. This feature allows you to easily analyze and understand your log data. To use this feature, simply pass the logs returned from the searchLogs function to the Chart.js library.
+
+```
+const logs = journol.searchLogs('test');
+const chartData = {
+  labels: logs.map(log => log.timestamp),
+  datasets: [
+    {
+      label: 'Test Logs',
+      data: logs.map(log => log.message),
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+    }
+  ]
+};
+
+const ctx = document.getElementById('myChart').getContext('2d');
+const chart = new Chart(ctx, {
+  type: 'line',
+  data: chartData
 });
 ```
 
-## Logging Events and Messages
+## Requirements
 
-Once you have configured Journol, you can start logging events and messages by using the log object. You can log events and messages using the following methods:
+    Node.js 8.0.0 or later
+    Winston 3.2.0 or later
+    Sentry 6.4.0 or later
+    Chart.js 2.9.3 or later
+    Lodash 4.17.15 or later
 
-- log.info(message)
-- log.warning(message)
-- log.error(message)
-- log.debug(message)
+## License
 
-For example, you can log an info message as follows:
-
-```
-log.info('This is an info message');
-```
-
-## Search and Filtering
-
-Journol provides powerful search and filtering functionality that allows you to find the logs you need quickly and easily. You can search and filter logs using the following methods:
-
-- log.search(query)
-- log.filterByLevel(level)
-
-For example, you can search for all logs that contain the word "error" as follows:
-
-```
-const searchResults = log.search('error');
-```
-
-And you can filter logs by level as follows:
-
-```
-const filteredResults = log.filterByLevel('error');
-```
-
-## Future Releases
-
-We are constantly working to improve Journol and make it even more powerful. In future releases, we plan to add MongoDB integration to allow you to store and manage your logs even more efficiently.
-Conclusion
-
-Journol is the smart logging library you've always wanted. With its powerful search and filtering functionality, Journol makes logging events and messages a breeze. Try Journol today and experience the power of smart logging!
+Journol is licensed under the MIT license.
