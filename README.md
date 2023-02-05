@@ -1,4 +1,4 @@
-# Journol v1.0.2
+# Journol v1.0.3
 
 The smart logging library you've always wanted
 
@@ -54,7 +54,7 @@ Journol provides powerful search and filtering functionality that allows you to 
 
 For example, you can search for all logs that contain the word "error" as follows:
 
-``
+```
 const searchResults = log.search('error');
 ```
 
