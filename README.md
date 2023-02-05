@@ -1,11 +1,12 @@
-# Journol v1.0.3
+# Journol v1.0.4
 
 The smart logging library you've always wanted
 
 ## Introduction
 
 Journol is a logging library that allows you to log events and messages in a smart and efficient way. With Journol, you can keep track of all your logs in one place and easily filter and search through them. In future releases, we plan to add MongoDB integration to make logging even more efficient and organized.
-Getting Started
+
+## Getting Started
 
 To get started with Journol, simply run the following command in your terminal to install the package:
 
