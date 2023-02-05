@@ -1,0 +1,20 @@
+{
+  "name": "journol",
+  "version": "1.0.1",
+  "description": "The smart logging library you've always wanted",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Wang",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.4",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.1",
+    "sentry": "^0.1.2",
+    "timestamps": "^0.1.3",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  }
+}
