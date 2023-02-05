@@ -3,6 +3,7 @@
 Journol is the smart logging library you've always wanted. It allows you to log your messages with a high level of accuracy and ease, while also providing advanced searching capabilities and log visualization. With Journol, you can ensure that your logs are well-organized, easily accessible and presented in a manner that is both clear and comprehensive.
 
 [Journol NPM](https://www.npmjs.com/package/journol)
+
 [Journol Github](https://github.com/tommypantss/journol)
 
 # Features
