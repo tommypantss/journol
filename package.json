@@ -1,6 +1,6 @@
 {
   "name": "journol",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The smart logging library you've always wanted",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,10 @@
   },
   "author": "Tom Wang",
   "license": "MIT",
+  "tags": "log, logging, tools, sysadmin, advanced, chart",
   "dependencies": {
     "async": "^3.2.4",
+    "chart.js": "^4.2.0",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.1",
     "sentry": "^0.1.2",
