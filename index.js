@@ -12,9 +12,12 @@ const logger = winston.createLogger({
     })
   ],
   exceptionHandlers: [
-    new winston.transports.Console(),
+    new winston.transports.Console({
+      handleExceptions: true
+    }),
     new Sentry.Handlers.Sentry({
-      level: 'error'
+      level: 'error',
+      handleExceptions: true
     })
   ]
 });
