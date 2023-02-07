@@ -1,72 +1,85 @@
 # Journol
 
+## v1.1.2
+
+Added winston exception handling, improved performance and updated documentation.
+
+–––2023/2/7
+
 Journol is the smart logging library you've always wanted. It allows you to log your messages with a high level of accuracy and ease, while also providing advanced searching capabilities and log visualization. With Journol, you can ensure that your logs are well-organized, easily accessible and presented in a manner that is both clear and comprehensive.
 
 [Journol NPM](https://www.npmjs.com/package/journol)
 
 [Journol Github](https://github.com/tommypantss/journol)
 
-# Features
+## Features
 
 - Logging messages with different levels of severity (error, warn, info, verbose, debug, silly)
 - Integration with Sentry for error reporting and tracking
 - Advanced log searching with support for full-text search, case sensitivity, and regex patterns
-- Log visualization using Chart.js for easy analysis and understanding of log data
+- Log visualization using Chart.js for easy analysis and unde
+rstanding of log data
 - Ability to search logs by timestamp and level of severity
+## Getting Started
 
-# Installation
+To get started with Journol, simply run `npm i journol` in your terminal.
 
-```
-npm install journol
-```
+## Using Journol
 
-# Usage
-## Logging a message
+Journol is easy to use, with just two main functions: logMessage and searchLogs.
 
-To log a message with Journol, you can use the logMessage function, which accepts three arguments: message, level, and dsn. message is the text that you want to log, level is the severity level of the message (error, warn, info, verbose, debug, silly), and dsn is the Sentry DSN key (optional).
+`logMessage`
 
-```
-const journol = require('journol');
+The logMessage function logs a message and the log level. It takes three parameters: message, level, and dsn. The message parameter is the message you want to log. The level parameter is the log level - you can use any of the log levels supported by Winston (error, warn, info, verbose, debug, silly). The dsn parameter is the Sentry DSN (Data Source Name) - if you want to use Sentry to report errors, you need to pass the DSN here. If you don't want to use Sentry, simply pass null or undefined.
 
-journol.logMessage('This is a test log message', 'info');
-```
-
-## Searching logs
-
-Journol provides advanced searching capabilities that allow you to search your logs using full-text search, case sensitivity, and regex patterns. You can search logs using the searchLogs function, which accepts a single argument, searchTerm.
+Here's an example of how to use the logMessage function:
 
 ```
 const journol = require('journol');
+journol.logMessage('This is a log message', 'info', null);
+```
 
-const logs = journol.searchLogs('test');
+`searchLogs`
+
+The searchLogs function is used to search for logs. It takes one parameter: searchTerm. The searchTerm parameter is the term you want to search for in the logs. The function returns an array of logs that contain the search term.
+
+Here's an example of how to use the searchLogs function:
+
+```
+const journol = require('journol');
+const logs = journol.searchLogs('error');
 console.log(logs);
 ```
 
-## Log visualization
+## Log Visualization
 
-Journol also provides log visualization through the use of Chart.js. This feature allows you to easily analyze and understand your log data. To use this feature, simply pass the logs returned from the searchLogs function to the Chart.js library.
+Journol uses Chart.js to visualize logs. To use the log visualization feature, you'll need to include Chart.js in your project. Once you've done that, simply pass the logs you want to visualize to Chart.js and it will generate the charts for you.
+
+Here's an example of how to use the log visualization feature:
 
 ```
-const logs = journol.searchLogs('test');
-const chartData = {
-  labels: logs.map(log => log.timestamp),
-  datasets: [
-    {
-      label: 'Test Logs',
-      data: logs.map(log => log.message),
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1
-    }
-  ]
-};
-
-const ctx = document.getElementById('myChart').getContext('2d');
-const chart = new Chart(ctx, {
-  type: 'line',
-  data: chartData
-});
+const journol = require('journol');
+const logs = journol.searchLogs('error');
+const chart = new Chart(logs);
+chart.render();
 ```
+
+## Exception Handling
+
+Journol uses Winston's exception handling to catch and log errors. The errors are logged with the error log level and sent to Sentry (if the Sentry DSN is provided).
+
+Here's an example of how to use the exception handling feature:
+
+```
+const journol = require('journol');
+try {
+  throw new Error('This is an error');
+} catch (error) {
+  journol.logMessage(error.message, 'error', process.env.SENTRY_DSN);
+}
+```
+
+
 
 ## Requirements
 
